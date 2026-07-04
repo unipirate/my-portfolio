@@ -1,1 +1,113 @@
 @import "tailwindcss";
+
+@theme {
+  /* Deep space background scale */
+  --color-space-950: #020617;
+  --color-space-900: #050a1f;
+  --color-space-800: #0b1229;
+  --color-space-700: #131b38;
+  --color-space-600: #1e2a4a;
+
+  /* Purple / indigo accents */
+  --color-accent-300: #c4b5fd;
+  --color-accent-400: #a78bfa;
+  --color-accent-500: #8b5cf6;
+  --color-accent-600: #7c3aed;
+  --color-indigo-accent: #6366f1;
+
+  --color-ink: #e2e8f0;
+  --color-ink-muted: #94a3b8;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: #020617;
+  color: #e2e8f0;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Deep-space top spotlight glow */
+.spotlight {
+  background: radial-gradient(
+    60% 50% at 50% 0%,
+    rgba(124, 58, 237, 0.22) 0%,
+    rgba(99, 102, 241, 0.12) 35%,
+    rgba(2, 6, 23, 0) 70%
+  );
+}
+
+/* Subtle grid overlay */
+.bg-grid {
+  background-image:
+    linear-gradient(to right, rgba(148, 163, 184, 0.06) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(148, 163, 184, 0.06) 1px, transparent 1px);
+  background-size: 56px 56px;
+  mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, #000 40%, transparent 100%);
+  -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, #000 40%, transparent 100%);
+}
+
+/* Glowing bordered card */
+.glow-card {
+  position: relative;
+  background:
+    linear-gradient(180deg, rgba(19, 27, 56, 0.6) 0%, rgba(5, 10, 31, 0.6) 100%);
+  border: 1px solid rgba(148, 163, 184, 0.12);
+  border-radius: 1rem;
+  backdrop-filter: blur(8px);
+  transition: border-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.glow-card:hover {
+  border-color: rgba(167, 139, 250, 0.5);
+  box-shadow: 0 0 0 1px rgba(167, 139, 250, 0.15), 0 12px 40px -12px rgba(124, 58, 237, 0.45);
+}
+
+/* Gradient text */
+.text-gradient {
+  background: linear-gradient(90deg, #c4b5fd 0%, #818cf8 50%, #a78bfa 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Glowing primary button */
+.btn-glow {
+  background: linear-gradient(90deg, #7c3aed 0%, #6366f1 100%);
+  box-shadow: 0 8px 30px -8px rgba(124, 58, 237, 0.6);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.btn-glow:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 40px -8px rgba(124, 58, 237, 0.8);
+}
+
+/* Marquee animation */
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+.animate-marquee {
+  animation: marquee 28s linear infinite;
+}
+
+/* Thin custom scrollbar for a modern feel */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #050a1f;
+}
+::-webkit-scrollbar-thumb {
+  background: #1e2a4a;
+  border-radius: 999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #7c3aed;
+}
