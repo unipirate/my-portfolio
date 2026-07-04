@@ -1,13 +1,14 @@
 import { Canvas, useFrame } from '@react-three/fiber'
 import { Stars } from '@react-three/drei'
+import { useReducedMotion } from 'framer-motion'
 import { useRef, Suspense } from 'react'
 import type { Group } from 'three'
 
-function DriftingStars() {
+function DriftingStars({ animate }: { animate: boolean }) {
   const ref = useRef<Group>(null)
 
   useFrame((_, delta) => {
-    if (ref.current) {
+    if (animate && ref.current) {
       ref.current.rotation.y += delta * 0.01
       ref.current.rotation.x += delta * 0.004
     }
@@ -21,8 +22,10 @@ function DriftingStars() {
 }
 
 function SpaceBackground() {
+  const reduceMotion = useReducedMotion()
+
   return (
-    <div className="fixed inset-0 -z-10 bg-space-950">
+    <div className="pointer-events-none fixed inset-0 -z-10 bg-space-950">
       {/* Deep-space starfield */}
       <Canvas
         className="!absolute inset-0"
@@ -31,7 +34,7 @@ function SpaceBackground() {
         dpr={[1, 1.5]}
       >
         <Suspense fallback={null}>
-          <DriftingStars />
+          <DriftingStars animate={!reduceMotion} />
         </Suspense>
       </Canvas>
 

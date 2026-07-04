@@ -1,6 +1,8 @@
 import { motion } from 'framer-motion'
+import { lazy, Suspense } from 'react'
 import { profile } from '../data/profile'
-import Hero3D from './Hero3D'
+
+const Hero3D = lazy(() => import('./Hero3D'))
 
 function Hero() {
   return (
@@ -50,7 +52,7 @@ function Hero() {
             className="mt-8 flex flex-wrap items-center justify-center md:justify-start gap-4"
           >
             <a
-              href="/FUQUAN%20GAO.pdf"
+              href="/FuQuan-Gao-CV.pdf"
               download
               className="btn-glow inline-flex items-center rounded-xl px-6 py-3 text-white font-medium"
             >
@@ -98,7 +100,11 @@ function Hero() {
           className="relative"
         >
           <div className="pointer-events-none absolute inset-0 rounded-full bg-accent-600/20 blur-3xl" />
-          <Hero3D />
+          <Suspense
+            fallback={<div className="h-[340px] w-full sm:h-[420px] md:h-[500px]" />}
+          >
+            <Hero3D />
+          </Suspense>
         </motion.div>
       </div>
     </section>

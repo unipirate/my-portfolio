@@ -1,12 +1,23 @@
 import { Canvas } from '@react-three/fiber'
 import { Float, OrbitControls, RoundedBox, useTexture, Environment } from '@react-three/drei'
+import { useReducedMotion } from 'framer-motion'
 import { Suspense } from 'react'
+
+const isTouchDevice =
+  typeof window !== 'undefined' &&
+  typeof window.matchMedia === 'function' &&
+  window.matchMedia('(pointer: coarse)').matches
 
 function AvatarCard() {
   const texture = useTexture('/avatar.png')
+  const reduceMotion = useReducedMotion()
 
   return (
-    <Float speed={1.5} rotationIntensity={0.5} floatIntensity={1.1}>
+    <Float
+      speed={reduceMotion ? 0 : 1.5}
+      rotationIntensity={reduceMotion ? 0 : 0.5}
+      floatIntensity={reduceMotion ? 0 : 1.1}
+    >
       <group>
         {/* Glowing purple frame peeking out behind */}
         <RoundedBox args={[3.4, 3.4, 0.24]} radius={0.34} smoothness={6} position={[0, 0, -0.06]}>
@@ -45,14 +56,17 @@ function Hero3D() {
           <AvatarCard />
           <Environment preset="city" />
         </Suspense>
-        <OrbitControls
-          enableZoom={false}
-          enablePan={false}
-          minAzimuthAngle={-0.7}
-          maxAzimuthAngle={0.7}
-          minPolarAngle={Math.PI / 2 - 0.5}
-          maxPolarAngle={Math.PI / 2 + 0.5}
-        />
+        {/* On touch devices, skip OrbitControls so the canvas doesn't hijack page scroll */}
+        {!isTouchDevice && (
+          <OrbitControls
+            enableZoom={false}
+            enablePan={false}
+            minAzimuthAngle={-0.7}
+            maxAzimuthAngle={0.7}
+            minPolarAngle={Math.PI / 2 - 0.5}
+            maxPolarAngle={Math.PI / 2 + 0.5}
+          />
+        )}
       </Canvas>
     </div>
   )
