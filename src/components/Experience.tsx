@@ -32,7 +32,12 @@ const timeline: TimelineItem[] = [
     stack: p.stack,
     sortKey: startKey(p.period),
   })),
-  ...profile.experience.map((e) => ({
+  ...(profile.experience as readonly {
+    role: string
+    company: string
+    period: string
+    highlights: readonly string[]
+  }[]).map((e) => ({
     role: e.role,
     company: e.company,
     period: e.period,

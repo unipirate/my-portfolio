@@ -52,7 +52,7 @@ function Hero() {
             className="mt-8 flex flex-wrap items-center justify-center md:justify-start gap-4"
           >
             <a
-              href="/FuQuan-Gao-CV.pdf"
+              href="/Eldon-Gao-CV.docx"
               download
               className="btn-glow inline-flex items-center rounded-xl px-6 py-3 text-white font-medium"
             >

@@ -2,12 +2,16 @@ import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { profile } from '../data/profile'
 
-const allSkills = [
-  ...profile.skills.languages,
-  ...profile.skills.frameworks,
-  ...profile.skills.cloudDevOps,
-  ...profile.skills.databases,
+const skillGroups: { label: string; items: readonly string[] }[] = [
+  { label: 'Languages', items: profile.skills.languages },
+  { label: 'Frontend', items: profile.skills.frontend },
+  { label: 'Backend & APIs', items: profile.skills.backend },
+  { label: 'Data', items: profile.skills.data },
+  { label: 'Cloud & DevOps', items: profile.skills.cloudDevOps },
+  { label: 'AI Development', items: profile.skills.ai },
 ]
+
+const allSkills = Array.from(new Set(skillGroups.flatMap((g) => g.items)))
 
 function CopyEmailCard() {
   const [copied, setCopied] = useState(false)
@@ -122,26 +126,57 @@ function About() {
         </motion.div>
       </div>
 
-      {/* Certifications */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.5 }}
-        className="glow-card mt-5 p-7"
-      >
-        <h3 className="text-lg font-semibold text-ink mb-4">Certifications</h3>
-        <div className="flex flex-wrap gap-2">
-          {profile.certifications.map((c, i) => (
-            <span
-              key={i}
-              className="rounded-full border border-accent-400/20 bg-space-800/60 px-3 py-1.5 text-xs text-ink-muted"
-            >
-              {c}
-            </span>
-          ))}
-        </div>
-      </motion.div>
+      {/* Skills + Certifications row */}
+      <div className="mt-5 grid gap-5 md:grid-cols-3">
+        {/* Skills - col-span-2 */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="glow-card p-7 md:col-span-2"
+        >
+          <h3 className="text-lg font-semibold text-ink mb-4">Skills</h3>
+          <div className="space-y-4">
+            {skillGroups.map((group) => (
+              <div key={group.label}>
+                <p className="text-xs uppercase tracking-wider text-accent-300 mb-2">{group.label}</p>
+                <div className="flex flex-wrap gap-2">
+                  {group.items.map((s) => (
+                    <span
+                      key={s}
+                      className="rounded-md bg-space-700/60 px-2.5 py-1 text-xs text-ink-muted"
+                    >
+                      {s}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        </motion.div>
+
+        {/* Certifications - col-span-1 */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.1 }}
+          className="glow-card p-7"
+        >
+          <h3 className="text-lg font-semibold text-ink mb-4">Certifications</h3>
+          <ul className="space-y-3">
+            {profile.certifications.map((c, i) => (
+              <li
+                key={i}
+                className="text-sm text-ink-muted border-l-2 border-accent-500/40 pl-3"
+              >
+                {c}
+              </li>
+            ))}
+          </ul>
+        </motion.div>
+      </div>
 
       {/* Skills marquee */}
       <div className="mt-12">

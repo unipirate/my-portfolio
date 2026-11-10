@@ -1,6 +1,6 @@
-# Fuquan Gao — Portfolio
+# Eldon Gao — Portfolio
 
-A dark, space-themed personal portfolio for Fuquan Gao (Full-Stack Software Engineer). It features an interactive 3D avatar, an animated starfield background, a bento-grid About section, a career timeline, project filtering, and a contact form.
+A dark, space-themed personal portfolio for Eldon (Fuquan) Gao (Full-Stack Software Engineer). It features an interactive 3D avatar, an animated starfield background, a bento-grid About section, a career timeline, project filtering, and a contact form.
 
 Live site: https://my-portfolio-one-nu-96.vercel.app/
 
@@ -41,7 +41,7 @@ src/
 All resume content (summary, education, projects, experience, skills, certifications, contact) lives in [`src/data/profile.ts`](src/data/profile.ts). Update that file and the whole site reflects the changes.
 
 - **Avatar:** replace `public/avatar.png`.
-- **CV:** replace `public/FuQuan-Gao-CV.pdf` (linked from the Hero "Download CV" button).
+- **CV:** replace `public/Eldon-Gao-CV.docx` (linked from the Hero "Download CV" button).
 - **Contact form:** submits via `mailto:` by default; see the comment in `src/components/Contact.tsx` for wiring up EmailJS.
 
 ## Deployment

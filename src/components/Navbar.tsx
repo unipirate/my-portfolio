@@ -20,7 +20,7 @@ function Navbar() {
     >
       <nav className="flex items-center justify-between rounded-full border border-white/10 bg-space-900/70 px-5 py-2.5 backdrop-blur-xl shadow-[0_8px_40px_-12px_rgba(124,58,237,0.4)]">
         <a href="#hero" className="text-sm font-bold tracking-tight text-ink">
-          FG<span className="text-accent-400">.</span>
+          EG<span className="text-accent-400">.</span>
         </a>
 
         <div className="hidden md:flex items-center gap-7">
